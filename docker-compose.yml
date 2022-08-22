@@ -9,7 +9,7 @@ version: '3.9'
 
 services:
   trickle-ipfs:
-    image: christroutner/trickle-ipfs:v1.0.0
+    image: christroutner/trickle-ipfs:v1.0.1
     #build:
     #  context: ./
     #  dockerfile: Dockerfile
@@ -26,8 +26,8 @@ services:
     mem_limit: 1000mb
     ports:
       - 4001:4001
-      - 5001:5001
-      - 8080:8080
+      - 172.17.0.1:5001:5001
+      - 172.17.0.1:8080:8080
     command: [
       './start-ipfs.sh'
     ]
