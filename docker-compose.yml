@@ -1,0 +1,36 @@
+# This is an example docker-compose file that can be used to customize and
+# control the IPFS daemon. Things to pay attention to:
+# - envrionment
+# - volume
+# - memory limit
+# - ports
+
+version: '3.9'
+
+services:
+  trickle-ipfs:
+    image: christroutner/trickle-ipfs:v1.0.0
+    #build:
+    #  context: ./
+    #  dockerfile: Dockerfile
+    container_name: trickle-ipfs
+    environment:
+      IPFS_DAEMON_ARGUMENTS: '--enable-pubsub-experiment --migrate=true --agent-version-suffix=docker --routing=dhtclient'
+      UPLOAD_KBPS: '100'
+      DOWNLOAD_KBPS: '100'
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '10'
+    mem_limit: 1000mb
+    ports:
+      - 4001:4001
+      - 5001:5001
+      - 8080:8080
+    command: [
+      './start-ipfs.sh'
+    ]
+    volumes:
+      - ./data/go-ipfs:/root/.ipfs
+    restart: always
