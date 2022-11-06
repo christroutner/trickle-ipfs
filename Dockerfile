@@ -9,7 +9,7 @@ WORKDIR /root
 COPY setup-config.sh setup-config.sh
 RUN bash setup-config.sh
 
-COPY start-ipfs.sh start-ipfs.sh
+#COPY start-ipfs.sh start-ipfs.sh
 CMD ["./start-ipfs.sh"]
 
 # Launch a dummy app to keep the process alive so that I can debug issues.
