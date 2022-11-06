@@ -9,13 +9,13 @@ version: '3.9'
 
 services:
   trickle-ipfs:
-    #image: christroutner/trickle-ipfs:v1.0.1
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: christroutner/trickle-ipfs:v1.0.2
+    #build:
+    #  context: ./
+    #  dockerfile: Dockerfile
     container_name: trickle-ipfs
     environment:
-      IPFS_DAEMON_ARGUMENTS: '--enable-pubsub-experiment --migrate=true --agent-version-suffix=docker --routing=dhtclient'
+      IPFS_DAEMON_ARGUMENTS: '--enable-pubsub-experiment --migrate=true --agent-version-suffix=docker --routing=dhtclient --enable-gc'
       UPLOAD_KBPS: '100'
       DOWNLOAD_KBPS: '100'
     logging:
